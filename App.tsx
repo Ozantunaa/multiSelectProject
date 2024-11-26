@@ -1,10 +1,16 @@
-import { Text, View } from 'react-native';
+import { Text, View, SafeAreaView } from 'react-native';
+import CharacterSelect from './src/components/CharacterSelect';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <View className="bg-white flex-1 items-center justify-center">
-      <Text className="text-gray-500">Open up App.tsx to start working on your app!</Text>
-    </View>
+    <QueryClientProvider client={queryClient}>
+      <SafeAreaView className="bg-white flex-1">
+        <CharacterSelect />
+      </SafeAreaView>
+    </QueryClientProvider>
   );
 }
 
