@@ -13,3 +13,8 @@ export interface CharacterState {
     toggleCharacter: (character: Character) => void;
   }
 
+export interface SelectedCharacterItemProps {
+    character: Character;
+    onRemove: (character: Character) => void;
+}
+

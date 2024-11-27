@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
 import { Character } from '../types';
-
+import Entypo from '@expo/vector-icons/Entypo';
 interface Props {
     character: Character;
     searchTerm: string;
@@ -22,7 +22,7 @@ const CharacterListItem = ({ character, searchTerm, isSelected, onToggle, isLast
                 onPress={() => onToggle(character)}
                 className={`border rounded w-4 h-4 mr-2 justify-center items-center ${isSelected ? 'bg-blue-500' : 'bg-white'}`}
             >
-                {isSelected && <Text className='text-white text-xs'>✓</Text>}
+                {isSelected &&<Entypo name="check" size={12} color="white" />}
             </TouchableOpacity>
             <Image
                 source={{ uri: character.image }}
