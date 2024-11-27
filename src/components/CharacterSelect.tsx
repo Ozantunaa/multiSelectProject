@@ -14,11 +14,25 @@ const CharacterSelect = () => {
         toggleCharacter
     } = useCharacterStore();
 
-    const { data: characters = [], isLoading, error } = useCharacters(searchTerm);
+    const {
+        data,
+        isLoading,
+        fetchNextPage,
+        hasNextPage,
+        isFetchingNextPage
+    } = useCharacters(searchTerm);
 
-    const updatedCharacters = characters.map((character: Character) =>
+    const allCharacters = data?.pages.flatMap(page => page.results) ?? [];
+
+    const updatedCharacters = allCharacters.map((character: Character) =>
         selectedCharacters.find(selected => selected.id === character.id) || character
     );
+
+    const handleEndReached = () => {
+        if (hasNextPage && !isFetchingNextPage) {
+            fetchNextPage();
+        }
+    };
 
     return (
         <KeyboardAvoidingView
@@ -66,6 +80,13 @@ const CharacterSelect = () => {
                                     isLastItem={index === updatedCharacters.length - 1}
                                 />
                             )}
+                            onEndReached={handleEndReached}
+                            onEndReachedThreshold={0.5}
+                            ListFooterComponent={() =>
+                                isFetchingNextPage ? (
+                                    <ActivityIndicator size="small" color="black" />
+                                ) : null
+                            }
                         />
                     </View>
                 )}
