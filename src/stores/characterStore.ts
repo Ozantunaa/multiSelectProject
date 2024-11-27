@@ -1,8 +1,8 @@
-import { create } from 'zustand';
-import { CharacterState } from '../types';
+import { create } from "zustand";
+import { CharacterState } from "../types";
 
 export const useCharacterStore = create<CharacterState>((set) => ({
-  searchTerm: '',
+  searchTerm: "",
   characters: [],
   selectedCharacters: [],
   setSearchTerm: (term) => set({ searchTerm: term }),
