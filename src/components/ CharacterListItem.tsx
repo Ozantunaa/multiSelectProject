@@ -1,16 +1,9 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { Character } from '../types';
 import Entypo from '@expo/vector-icons/Entypo';
-interface Props {
-    character: Character;
-    searchTerm: string;
-    isSelected: boolean;
-    onToggle: (character: Character) => void;
-    isLastItem?: boolean;
-}
+import { CharacterListItemProps } from '../types';
 
-const CharacterListItem = ({ character, searchTerm, isSelected, onToggle, isLastItem }: Props) => {
+const CharacterListItem = ({ character, searchTerm, isSelected, onToggle, isLastItem }: CharacterListItemProps) => {
     const name = character.name;
     const search = searchTerm.toLowerCase();
     const startIndex = name.toLowerCase().indexOf(search);
@@ -22,7 +15,7 @@ const CharacterListItem = ({ character, searchTerm, isSelected, onToggle, isLast
                 onPress={() => onToggle(character)}
                 className={`border rounded w-4 h-4 mr-2 justify-center items-center ${isSelected ? 'bg-blue-500' : 'bg-white'}`}
             >
-                {isSelected &&<Entypo name="check" size={12} color="white" />}
+                {isSelected && <Entypo name="check" size={12} color="white" />}
             </TouchableOpacity>
             <Image
                 source={{ uri: character.image }}

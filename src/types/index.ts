@@ -18,3 +18,11 @@ export interface SelectedCharacterItemProps {
     onRemove: (character: Character) => void;
 }
 
+export interface CharacterListItemProps {
+    character: Character;
+    searchTerm: string;
+    isSelected: boolean;
+    onToggle: (character: Character) => void;
+    isLastItem?: boolean;
+}
+
